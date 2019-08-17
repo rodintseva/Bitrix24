@@ -16,11 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         private static final Logger logger = LogManager.getLogger();
 
 
-        @FindBy(css = "div[class='loader-mask shown']")
+        @FindBy(css = "find")
         @CacheLookup
         protected WebElement loaderMask;
 
-        @FindBy(css = "h1[class='oro-subtitle']")
+        @FindBy(css = "find")
         protected WebElement pageSubTitle;
 
 
@@ -58,14 +58,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         /**
          * This method will navigate user to the specific module in vytrack application.
          * For example: if tab is equals to Activities, and module equals to Calls,
-         * Then method will navigate user to this page: http://qa2.vytrack.com/call/
+         * Then method will navigate user to this page: https://login1.nextbasecrm.com/stream/
          *
          * @param tab
          * @param module
          */
         public void navigateToModule(String tab, String module) {
-            String tabLocator = "//span[normalize-space()='" + tab + "' and contains(@class, 'title title-level-1')]";
-            String moduleLocator = "//span[normalize-space()='" + module + "' and contains(@class, 'title title-level-2')]";
+            String tabLocator = "" + tab + "";
+            String moduleLocator = "" + module + "";
             try {
                 BrowserUtils.waitForClickablility(By.xpath(tabLocator), Integer.valueOf(ConfigurationReader.getProperty("SHORT_WAIT")));
                 WebElement tabElement = Driver.getDriver().findElement(By.xpath(tabLocator));
