@@ -1,22 +1,19 @@
 
-Feature:  As a user I should be able to create a task from activity stream.
-
-  Background:
-    Given: user is on the login page
-    When: user logs in with valid credentials
-    And: user navigates to Task in Activity Stream page
-
-
-  Scenario: User can create new task by clicking on tasks on activity stream
-    Then: user enters task name
-    And: user clicks on Send button
-    Then: system should display new task in Message
+Feature: Login   As user I want to login under different roles
+# So hook will take care of this action
+#  Hook will open main page
+#  Background:
+#    Given user is on the landing page
 
 
-  Scenario:Verify that user can upload a file and image or link or add checklist regarding to new task.Ø
+
+  Scenario: Login as a help Desk and navigate to Activity Stream
+    Given User is on landing page
+    When user logs in as a help desk
+    Then "Activity Stream" page name is displayed
+  Then user quites
 
 
-  Scenario:Verify that user should be able to set up a deadline for new task.
 
 
 

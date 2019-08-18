@@ -4,12 +4,14 @@ package com.bitrix24.utils;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -18,9 +20,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.Assert.assertTrue;
 
-    public class BrowserUtils {
+
+public class BrowserUtils {
         private static final Logger logger = LogManager.getLogger();
 
         /**
@@ -293,10 +296,10 @@ import static org.testng.AssertJUnit.assertTrue;
         /**
          * Verifies whether the element matching the provided locator is NOT displayed on page
          *
-         * @param by
+         * @param
          * @throws AssertionError the element matching the provided locator is displayed
          */
-        public static void verifyElementNotDisplayed(By by) {
+     /*   public static void verifyElementNotDisplayed(By by) {
             try {
                 Assert.assertFalse(Driver.getDriver().findElement(by).isDisplayed(), "Element should not be visible: " + by);
             } catch (NoSuchElementException e) {

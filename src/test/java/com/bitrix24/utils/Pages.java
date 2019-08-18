@@ -1,6 +1,7 @@
 package com.bitrix24.utils;
 
 import com.bitrix24.pages.activityStream.*;
+import com.bitrix24.pages.loginNavigation.LoginPage;
 
 public class Pages {
 
@@ -25,5 +26,10 @@ public class Pages {
         }
         return taskPage;
     }
-
+    public MessagePage messagePage() {
+        if (messagePage == null) {
+            messagePage = new MessagePage();
+        }
+        return messagePage;
+    }
 }

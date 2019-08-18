@@ -1,4 +1,6 @@
 package com.bitrix24.pages.activityStream;
 
-public class PollPage {
+import com.bitrix24.utils.BasePage;
+
+public class PollPage extends BasePage {
 }

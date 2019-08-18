@@ -1,9 +1,10 @@
 package com.bitrix24.pages.activityStream;
 
+import com.bitrix24.utils.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TaskPage {
+public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
     public WebElement activityStream;
     @FindBy(id = "task-edit-title")

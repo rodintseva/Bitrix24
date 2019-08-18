@@ -1,4 +1,6 @@
 package com.bitrix24.pages.activityStream;
 
-public class FilePage {
+import com.bitrix24.utils.BasePage;
+
+public class FilePage extends BasePage {
 }

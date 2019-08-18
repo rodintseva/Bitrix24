@@ -1,4 +1,6 @@
 package com.bitrix24.pages.activityStream;
 
-public class EventPage {
+import com.bitrix24.utils.BasePage;
+
+public class EventPage extends BasePage {
 }

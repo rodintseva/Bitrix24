@@ -20,8 +20,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         @CacheLookup
         protected WebElement loaderMask;
 
-        @FindBy(css = "find")
-        protected WebElement pageSubTitle;
+        @FindBy(id = "pagetitle")
+        protected WebElement pageTitle;
 
 
         public BasePage() {
@@ -32,11 +32,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         /**
          * @return page name, for example: Dashboard
          */
-        public String getPageSubTitle() {
+        public String getPageTitle() {
             //ant time we are verifying page name, or page subtitle, loader mask appears
-            waitUntilLoaderScreenDisappear();
-            BrowserUtils.waitForStaleElement(pageSubTitle);
-            return pageSubTitle.getText();
+          //  waitUntilLoaderScreenDisappear();
+            BrowserUtils.waitForStaleElement(pageTitle);
+            return pageTitle.getText();
         }
 
 
