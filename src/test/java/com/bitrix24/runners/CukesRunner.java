@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
     @RunWith(Cucumber.class)
     @CucumberOptions(
             features = {
-                    "src/test/resources/features/Login.feature"
+                    "src/test/resources/features"
 
                        /*
                         * feature contains scenarios
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
                         * where is the implementation for features
                         */
             } ,
-            glue = {"com/bitrix24/step_definitions/LoginStepDefinitions.java"},
+            glue = {"com/bitrix24/step_definitions"},
             dryRun = true
 
 

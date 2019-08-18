@@ -1,15 +1,17 @@
-package com.bitrix24.pages;
+package com.bitrix24.pages.activityStream;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ActivityStreamPage {
-
-
+public class TaskPage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
     public WebElement activityStream;
     @FindBy(id = "task-edit-title")
     public WebElement inputTaskName;
+    @FindBy (xpath= "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
+    public WebElement sendButton;
+    @FindBy (xpath= "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
+    public WebElement cancelButton;
     @FindBy (css = "body[style='min-height: 84px;'] ")
     public WebElement inputMessageBox;
     @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
@@ -24,8 +26,7 @@ public class ActivityStreamPage {
     public WebElement highPriorityCheckbox;
     @FindBy (css = "div[class='task-additional-alt-more']")
     public WebElement moreButton;
-    @FindBy (xpath= "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
-    public WebElement sendButton;
-    @FindBy (xpath= "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
-    public WebElement cancelButton;
+
+
+
 }
