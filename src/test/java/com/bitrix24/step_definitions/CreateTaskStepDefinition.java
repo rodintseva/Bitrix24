@@ -4,6 +4,7 @@ import com.bitrix24.utils.Pages;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
@@ -54,28 +55,22 @@ public class CreateTaskStepDefinition {
 
     @When("Click on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        page.taskPage().clickDeadlineButton();
     }
 
     @When("Click on a date and time")
     public void click_on_a_date_and_time() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        page.taskPage().selectDeadlineDate("8/15/2019");
     }
 
-    @When("Click on {string}")
-    public void click_on(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @When("Click on Select button")
+    public void click_on_Select_button() {
+        page.taskPage().clickDeadlineSelectButton();
     }
 
     @Then("System should display the selected date time")
     public void system_should_display_the_selected_date_time() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+        Assert.assertTrue(page.taskPage().verifyCreateMessage());
     }
-
-
 
 }
