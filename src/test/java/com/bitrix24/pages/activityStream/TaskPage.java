@@ -17,29 +17,30 @@ public class TaskPage extends BasePage {
     public WebElement activityStream;
     @FindBy(id = "task-edit-title")
     public WebElement inputTaskName;
-    @FindBy(xpath = "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
+    @FindBy (xpath= "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
     public WebElement sendButton;
-    @FindBy(xpath = "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
+    @FindBy (xpath= "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
     public WebElement cancelButton;
-//    @FindBy(css = "body[style='min-height: 84px;'] ")
-    @FindBy(css = "input[data-bx-id='task-edit-title']")
+    @FindBy (css = "body[style='min-height: 84px;'] ")
     public WebElement inputMessageBox;
-    @FindBy(css = "span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
     public WebElement uploadFiles;
-    @FindBy(xpath = "//span[text()='Link']")
+    @FindBy (xpath = "//span[text()='Link']")
     public WebElement attachLink;
     @FindBy(css = "div[class='popup-window-angly popup-window-angly-top']")
     public WebElement addMention;
-    @FindBy(css = "span[class=\"tasks-task-mpf-link\"]")
+    @FindBy (css = "span[class=\"tasks-task-mpf-link\"]")
     public WebElement checklist;
-    @FindBy(css = "input[id='tasks-task-priority-cb']")
+    @FindBy (css = "input[id='tasks-task-priority-cb']")
     public WebElement highPriorityCheckbox;
-    @FindBy(css = "div[class='task-additional-alt-more']")
+    @FindBy (css = "div[class='task-additional-alt-more']")
     public WebElement moreButton;
     @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-tasks\"]/span")
     public WebElement taskModuleButton;
     @FindBy(xpath = "//*[@id=\"blogPostEditCreateTaskPopup_content\"]/div/div[1]")
     public WebElement taskCreatedwindow;
+    @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
+    public WebElement clickOnTextBox;
 
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
@@ -51,19 +52,20 @@ public class TaskPage extends BasePage {
     @FindBy(css = "a.bx-calendar-button-select")
     public WebElement dateSelectButton;
 
-
-    public void enterTaskTittle(String value) {
-        inputMessageBox.sendKeys(value);
-    }
-
-    public void clickSendButton() {
+    public void navigatetoTask(){
+        taskModuleButton.click();
+        }
+        public void enterTaskTittle(String value){
+         clickOnTextBox.click();
+        clickOnTextBox.sendKeys(value);
+        }
+        public void clickSendButton(){
         sendButton.click();
-    }
-
-    public boolean verifyCreateMessage() {
-        return taskCreatedwindow.isDisplayed();
-    }
-
+        }
+        public boolean verifyCreateMessage(){
+            System.out.println("Message "+taskCreatedwindow.getText());
+        return  taskCreatedwindow.isDisplayed();
+}
     // *** deadline methods
     public void clickDeadlineButton() {
         deadLineButton.click();
@@ -78,7 +80,6 @@ public class TaskPage extends BasePage {
         String month = DateTimeFormatter.ofPattern("MMM").format(ld);
         int year = ld.getYear();
         int day = ld.getDayOfMonth();
-
 
         //locator for day
         //pick non-hidden day hidden days belong to prior and next month
@@ -96,8 +97,4 @@ public class TaskPage extends BasePage {
     public void clickDeadlineSelectButton(){
         dateSelectButton.click();
     }
-
 }
-
-
-

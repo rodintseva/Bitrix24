@@ -8,9 +8,10 @@ import org.junit.Assert;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
-    @When("user navigates to {string}")
-    public void userNavigatesTo(String value) {
 
+    @When("user navigates to Task module")
+    public void userNavigatesToTaskModule() {
+    page.taskPage().navigatetoTask();
     }
 
     @Given("user enters task name {string}")
@@ -23,11 +24,10 @@ public class CreateTaskStepDefinition {
     page.taskPage().clickSendButton();
     }
 
-    @Then("system should display new task")
+    @Then("System should display \"Task has been created\" message")
     public void system_should_display_new_task() {
     page.taskPage().verifyCreateMessage();
     }
-
 
     @When("user navigates to {string} in {string} page")
     public void user_navigates_to_in_page(String string, String string2) {

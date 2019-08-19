@@ -2,13 +2,13 @@ Feature:  As a user I should be able to create a task from activity stream.
 
   Background:
     Given user logs in as a help desk
-    When user navigates to "Task"
-
+    When user navigates to Task module
+@CreateTask
   Scenario: Create new task by clicking on Tasks on Activity stream
 
     And user enters task name "dCoders"
     And user clicks on Send button
-    Then system should display new task
+  Then System should display "Task has been created" message
 
 
   Scenario: Verify that user can upload a file and image or link or add checklist regarding to new task
