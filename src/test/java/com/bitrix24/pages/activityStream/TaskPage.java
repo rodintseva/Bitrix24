@@ -4,8 +4,13 @@ import com.bitrix24.utils.BasePage;
 import com.bitrix24.utils.BrowserUtils;
 import com.bitrix24.utils.Driver;
 import com.bitrix24.utils.Pages;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
@@ -37,7 +42,17 @@ public class TaskPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
     public WebElement clickOnTextBox;
 
-        public void navigatetoTask(){
+    // *** deadline locators
+    @FindBy(css = "input[data-bx-id='datepicker-display']")
+    public WebElement deadLineButton;
+    @FindBy(css = "a.bx-calendar-top-year")
+    public WebElement yearDropdown;
+    @FindBy(css = "a.bx-calendar-top-month")
+    public WebElement monthDropdown;
+    @FindBy(css = "a.bx-calendar-button-select")
+    public WebElement dateSelectButton;
+
+    public void navigatetoTask(){
         taskModuleButton.click();
         }
         public void enterTaskTittle(String value){
@@ -51,7 +66,35 @@ public class TaskPage extends BasePage {
             System.out.println("Message "+taskCreatedwindow.getText());
         return  taskCreatedwindow.isDisplayed();
 }
+    // *** deadline methods
+    public void clickDeadlineButton() {
+        deadLineButton.click();
+    }
+
+    public void selectDeadlineDate(String date) {
+        waitUntilLoaderScreenDisappear();
+        LocalDate ld = LocalDate.of(Integer.parseInt(date.substring(date.lastIndexOf("/") + 1)),
+                Integer.parseInt(date.substring(0, date.indexOf("/"))),
+                Integer.parseInt(date.substring(date.indexOf("/") + 1, date.lastIndexOf("/"))));
+
+        String month = DateTimeFormatter.ofPattern("MMM").format(ld);
+        int year = ld.getYear();
+        int day = ld.getDayOfMonth();
+
+        //locator for day
+        //pick non-hidden day hidden days belong to prior and next month
+        String dayLocator = "//a[contains(@class,'bx-calendar-cell') and text()='" + day + "' and not(contains(@class,'bx-calendar-date-hidden'))]";
+//      BrowserUtils.waitForVisibility(endDate, 5);
+
+        //select year
+        new Select(yearDropdown).selectByVisibleText(year + "");
+        //select month
+        new Select(monthDropdown).selectByVisibleText(month);
+        //select day
+        Driver.getDriver().findElement(By.xpath(dayLocator)).click();
+    }
+
+    public void clickDeadlineSelectButton(){
+        dateSelectButton.click();
+    }
 }
-
-
-

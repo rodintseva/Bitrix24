@@ -18,11 +18,11 @@ Feature:  As a user I should be able to create a task from activity stream.
     And user clicks on Send button
     Then System should upload the file or image
 
-
+@deadline
   Scenario: Verify that user should be able to set up a deadline for new task
     And user enters task name "dCodersCalendar"
     And Click on Calendar under Deadline
     And Click on a date and time
-    And Click on "Select"
+    And Click on Select button
     And user clicks on Send button
     Then System should display the selected date time
