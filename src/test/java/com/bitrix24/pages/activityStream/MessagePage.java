@@ -1,6 +1,7 @@
 package com.bitrix24.pages.activityStream;
 
 import com.bitrix24.utils.BasePage;
+import com.bitrix24.utils.Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

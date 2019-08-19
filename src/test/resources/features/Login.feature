@@ -11,7 +11,7 @@ Feature: Login   As user I want to login under different roles
     Given User is on landing page
     When user logs in as a help desk
     Then "Activity Stream" page name is displayed
-  Then user quites
+    Then user quites
 
 
 

@@ -1,6 +1,9 @@
 package com.bitrix24.pages.activityStream;
 
 import com.bitrix24.utils.BasePage;
+import com.bitrix24.utils.BrowserUtils;
+import com.bitrix24.utils.Driver;
+import com.bitrix24.utils.Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,7 +30,22 @@ public class TaskPage extends BasePage {
     public WebElement highPriorityCheckbox;
     @FindBy (css = "div[class='task-additional-alt-more']")
     public WebElement moreButton;
+    @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-tasks\"]/span")
+    public WebElement taskModuleButton;
+    @FindBy(xpath = "//*[@id=\"blogPostEditCreateTaskPopup_content\"]/div/div[1]")
+    public WebElement taskCreatedwindow;
 
-
+public void enterTaskTittle(String value){
+    inputMessageBox.sendKeys(value);
+}
+public void clickSendButton(){
+    sendButton.click();
+}
+public boolean verifyCreateMessage(){
+   return  taskCreatedwindow.isDisplayed();
 
 }
+}
+
+
+
