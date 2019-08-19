@@ -14,8 +14,8 @@ Feature:  As a user I should be able to create a task from activity stream.
   Scenario: Verify that user can upload a file and image or link
     And user enters task name "dCodersFile"
     And User clicks on Link button and upload the link "https://flipgrid.com"
-    And user clicks on Send button
-    Then System should upload link "https://flipgrid.com"
+  Then System should upload link "https://flipgrid.com"
+  And user clicks on Send button
 
 
 @deadline

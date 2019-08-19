@@ -36,8 +36,8 @@ public class CreateTaskStepDefinition {
     page.taskPage().attachLink(value);
     }
     @Then("System should upload link {string}")
-    public void systemShouldUploadLink(String value) {
-        Assert.assertEquals(page.taskPage().verifyLinkIsAttacheded(),value);
+    public void systemShouldUploadLink(String expected) {
+        Assert.assertEquals(expected, page.taskPage().verifyLinkIsAttached("https://flipgrid.com"));
     }
 //***Steps to set deadline
     @When("Click on Calendar under Deadline")

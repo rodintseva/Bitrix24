@@ -14,80 +14,113 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bitrix24.utils.Driver.getDriver;
+
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
     public WebElement activityStream;
+
     @FindBy(id = "task-edit-title")
     public WebElement inputTaskName;
-    @FindBy (xpath= "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
+
+    @FindBy(xpath = "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
     public WebElement sendButton;
-    @FindBy (xpath= "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
+
+    @FindBy(xpath = "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
     public WebElement cancelButton;
+
     @FindBy(css = "div[class='popup-window-angly popup-window-angly-top']")
     public WebElement addMention;
-    @FindBy (css = "span[class=\"tasks-task-mpf-link\"]")
+
+    @FindBy(css = "span[class=\"tasks-task-mpf-link\"]")
     public WebElement checklist;
-    @FindBy (css = "input[id='tasks-task-priority-cb']")
+
+    @FindBy(css = "input[id='tasks-task-priority-cb']")
     public WebElement highPriorityCheckbox;
-    @FindBy (css = "div[class='task-additional-alt-more']")
+
+    @FindBy(css = "div[class='task-additional-alt-more']")
     public WebElement moreButton;
+
     @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-tasks\"]/span")
     public WebElement taskModuleButton;
+
     @FindBy(xpath = "//*[@id=\"blogPostEditCreateTaskPopup_content\"]/div/div[1]")
     public WebElement taskCreatedwindow;
+
     @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
     public WebElement clickOnTextBox;
 
     //***Attach file locators
-    @FindBy (xpath= "/html/body ")
+    @FindBy(xpath = "/html/body ")
     public WebElement inputMessageBox;
-    @FindBy (xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
+
+    @FindBy(xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
     public WebElement attachLink;
-    @FindBy (xpath = "//*[@id=\"diskuf-selectdialog-aFzMGAR\"]/div[2]/table/tbody/tr[1]/td[1]/div/input")
+
+    @FindBy(xpath = "//*[@id=\"diskuf-selectdialog-aFzMGAR\"]/div[2]/table/tbody/tr[1]/td[1]/div/input")
     public WebElement uploadFromComputer;
-    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+
+    @FindBy(css = "span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
     public WebElement uploadFiles;
+
     @FindBy(xpath = "//*[@id=\"linklifefeed_task_form-href\"]")
     public WebElement enterLinkBox;
+
     @FindBy(xpath = "//*[@id=\"undefined\"]")
     public WebElement saveLinkButton;
 
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
     public WebElement deadLineButton;
+
     @FindBy(css = "a.bx-calendar-top-year")
     public WebElement yearDropdown;
+
     @FindBy(css = "a.bx-calendar-top-month")
     public WebElement monthDropdown;
+
     @FindBy(css = "a.bx-calendar-button-select")
     public WebElement dateSelectButton;
-//**Create task Methods
-    public void navigatetoTask(){
+
+    @FindBy(className = "bx-editor-iframe")
+    public WebElement iFrameElement;
+
+    //**Create task Methods
+    public void navigatetoTask() {
         taskModuleButton.click();
-        }
-        public void enterTaskTittle(String value){
-         clickOnTextBox.click();
-        clickOnTextBox.sendKeys(value);
-        }
-        public void clickSendButton(){
-        sendButton.click();
-        }
-        public boolean verifyCreateMessage(){
-            System.out.println("Message "+taskCreatedwindow.getText());
-        return  taskCreatedwindow.isDisplayed();
-
-
-}
-    //**Attach file and Link methods
-        public void attachLink(String value){
-            attachLink.click();
-            enterLinkBox.sendKeys(value);
-            saveLinkButton.click();
     }
 
-public String verifyLinkIsAttacheded() {
-        String actualREsalt = inputMessageBox.getText();
-        return actualREsalt;
+    public void enterTaskTittle(String value) {
+        clickOnTextBox.click();
+        clickOnTextBox.sendKeys(value);
+    }
+
+    public void clickSendButton() {
+        sendButton.click();
+    }
+
+    public boolean verifyCreateMessage() {
+        System.out.println("Message " + taskCreatedwindow.getText());
+        return taskCreatedwindow.isDisplayed();
+
+
+    }
+
+    //**Attach file and Link methods
+    public void attachLink(String value) {
+        attachLink.click();
+        enterLinkBox.sendKeys(value);
+        saveLinkButton.click();
+    }
+
+    public String verifyLinkIsAttached(String value) {
+
+        getDriver().switchTo().frame("bx-editor-iframe");
+        String actualLinkText = Driver.getDriver().findElement(By.cssSelector("a[href='"+value+"']")).getText();
+        //String actualREsalt = inputMessageBox.getText();
+
+        return actualLinkText;
+
  /*   String[] texst = inputMessageBox.getText().split(" ");
     for (String eachString : texst) {
         if (eachString.equals(value)) {
@@ -100,13 +133,13 @@ public String verifyLinkIsAttacheded() {
 
 
     }*/
-}
+    }
 
+    // *** deadline methods
 // *** deadline methods
-// *** deadline methods
-public void clickDeadlineButton() {
-    deadLineButton.click();
-}
+    public void clickDeadlineButton() {
+        deadLineButton.click();
+    }
 
     public void selectDeadlineDate(String date) {
         waitUntilLoaderScreenDisappear();
@@ -128,10 +161,13 @@ public void clickDeadlineButton() {
         //select month
         new Select(monthDropdown).selectByVisibleText(month);
         //select day
-        Driver.getDriver().findElement(By.xpath(dayLocator)).click();
+        getDriver().findElement(By.xpath(dayLocator)).click();
     }
 
-    public void clickDeadlineSelectButton(){
+    public void clickDeadlineSelectButton() {
         dateSelectButton.click();
     }
+
+
+
 }
