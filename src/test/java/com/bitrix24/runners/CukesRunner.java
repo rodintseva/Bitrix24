@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            tags = {"@AttachFile"},
+            tags = {"@AttachLink"},
             features = {"src/test/resources/features"     } ,
 
                        /*

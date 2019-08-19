@@ -12,10 +12,10 @@ Feature:  As a user I should be able to create a task from activity stream.
 
 @AttachFile
   Scenario: Verify that user can upload a file and image or link
-    And user enters task name "dCodersFile"
+  And user enters task name "dCodersFile"
   Then User clicks on upload file button attaches file located at "C:\Users\rodin\OneDrive\Desktop\7_d5WY5jKS0.jpg"
   Then System should display attached file
-    And User clicks on Link button and upload the link "https://flipgrid.com"
+  And User clicks on Link button and upload the link "https://flipgrid.com"
   Then System should upload link "https://flipgrid.com"
   And user clicks on Send button
 

@@ -41,7 +41,7 @@ public class TaskPage extends BasePage {
     public WebElement clickOnTextBox;
 
     //***Attach file locators
-    @FindBy(xpath = "//*[@id=\"diskuf-selectdialog-wrgLCp0\"]/div[2]/table/tbody/tr[1]/td[1]/div/span")
+    @FindBy(id = "diskuf-selectdialog-wrgLCp0")
     public WebElement getUploadFromComputer;
     @FindBy (xpath= "/html/body ")
     public WebElement inputMessageBox;
@@ -98,13 +98,14 @@ public class TaskPage extends BasePage {
         saveLinkButton.click();
     }
 
-    public String verifyLinkIsAttached(String value) {
-
-        getDriver().switchTo().frame("bx-editor-iframe");
-        String actualLinkText = getDriver().findElement(By.cssSelector("a[href='"+value+"']")).getText();
+    public String verifyLinkIsAttached() {
+      getDriver().switchTo().frame(0);
         //String actualREsalt = inputMessageBox.getText();
+        String actualLinkText = Driver.getDriver().findElement(By.xpath("/html/body")).getText();
+        System.out.println(actualLinkText);
+        // Driver.getDriver().switchTo().parentFrame();
         return actualLinkText;
-}
+    }
 
 
 // *** deadline methods
