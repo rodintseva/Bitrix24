@@ -64,6 +64,8 @@ public class TaskPage extends BasePage {
     public WebElement monthDropdown;
     @FindBy(css = "a.bx-calendar-button-select")
     public WebElement dateSelectButton;
+    @FindBy(className = "diskuf-label-icon")
+    public  WebElement attachedFileIcon;
 //**Create task Methods
     public void navigatetoTask(){
         taskModuleButton.click();
@@ -85,6 +87,9 @@ public class TaskPage extends BasePage {
     public void attachFile(String value){
         uploadFiles.click();
         getUploadFromComputer.sendKeys(value);
+
+    }
+    public void verifyUploadedFilesIcon(){
 
     }
     public void attachLink(String value) {

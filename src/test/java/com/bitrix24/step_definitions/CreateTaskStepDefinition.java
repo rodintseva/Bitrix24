@@ -35,15 +35,19 @@ public class CreateTaskStepDefinition {
         public void userClicksOnUploadFileButtonAttachesFileLocatedAt(String value) {
         page.taskPage().attachFile(value);
         }
+         @Then("System should display attached file")
+         public void systemShouldDisplayAttachedFile() {
+            page.taskPage().verifyUploadedFilesIcon();
+    }
 
-    @And("User clicks on Link button and upload the link {string}")
-    public void userClicksOnLinkButtonAndUploadTheLink(String value) {
-    page.taskPage().attachLink(value);
-    }
-    @Then("System should upload link {string}")
-    public void systemShouldUploadLink(String expected) {
+        @And("User clicks on Link button and upload the link {string}")
+        public void userClicksOnLinkButtonAndUploadTheLink(String value) {
+        page.taskPage().attachLink(value);
+        }
+        @Then("System should upload link {string}")
+        public void systemShouldUploadLink(String expected) {
         Assert.assertEquals(expected, page.taskPage().verifyLinkIsAttached("https://flipgrid.com"));
-    }
+        }
 //***Steps to set deadline
     @When("Click on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
