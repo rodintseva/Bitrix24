@@ -1,6 +1,7 @@
 package com.bitrix24.step_definitions;
 
 import com.bitrix24.utils.Pages;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -8,7 +9,7 @@ import org.junit.Assert;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
-
+//***Steps to create Task
     @When("user navigates to Task module")
     public void userNavigatesToTaskModule() {
     page.taskPage().navigatetoTask();
@@ -29,30 +30,16 @@ public class CreateTaskStepDefinition {
     page.taskPage().verifyCreateMessage();
     }
 
-    @When("user navigates to {string} in {string} page")
-    public void user_navigates_to_in_page(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+//***Steps to attach Link
+    @And("User clicks on Link button and upload the link {string}")
+    public void userClicksOnLinkButtonAndUploadTheLink(String value) {
+    page.taskPage().attachLink(value);
     }
-
-    @When("User clicks on {string} button")
-    public void user_clicks_on_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+    @Then("System should upload link {string}")
+    public void systemShouldUploadLink(String value) {
+        Assert.assertEquals(page.taskPage().verifyLinkIsAttacheded(),value);
     }
-
-    @When("User click on {string} and select a file")
-    public void user_click_on_and_select_a_file(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("System should upload the file or image")
-    public void system_should_upload_the_file_or_image() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
+//***Steps to set deadline
     @When("Click on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
         page.taskPage().clickDeadlineButton();
@@ -72,5 +59,7 @@ public class CreateTaskStepDefinition {
     public void system_should_display_the_selected_date_time() {
         Assert.assertTrue(page.taskPage().verifyCreateMessage());
     }
+
+
 
 }

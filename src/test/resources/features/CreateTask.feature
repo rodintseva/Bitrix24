@@ -10,13 +10,13 @@ Feature:  As a user I should be able to create a task from activity stream.
   And user clicks on Send button
   Then System should display "Task has been created" message
 
-
-  Scenario: Verify that user can upload a file and image or link or add checklist regarding to new task
+@AttachFile
+  Scenario: Verify that user can upload a file and image or link
     And user enters task name "dCodersFile"
-    And User clicks on "Upload Files" button
-    And User click on "Upload files and images" and select a file
+    And User clicks on Link button and upload the link "https://flipgrid.com"
     And user clicks on Send button
-    Then System should upload the file or image
+    Then System should upload link "https://flipgrid.com"
+
 
 @deadline
   Scenario: Verify that user should be able to set up a deadline for new task

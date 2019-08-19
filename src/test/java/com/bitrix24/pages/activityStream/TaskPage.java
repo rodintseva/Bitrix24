@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
@@ -21,12 +23,6 @@ public class TaskPage extends BasePage {
     public WebElement sendButton;
     @FindBy (xpath= "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
     public WebElement cancelButton;
-    @FindBy (css = "body[style='min-height: 84px;'] ")
-    public WebElement inputMessageBox;
-    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
-    public WebElement uploadFiles;
-    @FindBy (xpath = "//span[text()='Link']")
-    public WebElement attachLink;
     @FindBy(css = "div[class='popup-window-angly popup-window-angly-top']")
     public WebElement addMention;
     @FindBy (css = "span[class=\"tasks-task-mpf-link\"]")
@@ -42,6 +38,20 @@ public class TaskPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
     public WebElement clickOnTextBox;
 
+    //***Attach file locators
+    @FindBy (xpath= "/html/body ")
+    public WebElement inputMessageBox;
+    @FindBy (xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
+    public WebElement attachLink;
+    @FindBy (xpath = "//*[@id=\"diskuf-selectdialog-aFzMGAR\"]/div[2]/table/tbody/tr[1]/td[1]/div/input")
+    public WebElement uploadFromComputer;
+    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+    public WebElement uploadFiles;
+    @FindBy(xpath = "//*[@id=\"linklifefeed_task_form-href\"]")
+    public WebElement enterLinkBox;
+    @FindBy(xpath = "//*[@id=\"undefined\"]")
+    public WebElement saveLinkButton;
+
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
     public WebElement deadLineButton;
@@ -51,7 +61,7 @@ public class TaskPage extends BasePage {
     public WebElement monthDropdown;
     @FindBy(css = "a.bx-calendar-button-select")
     public WebElement dateSelectButton;
-
+//**Create task Methods
     public void navigatetoTask(){
         taskModuleButton.click();
         }
@@ -65,11 +75,38 @@ public class TaskPage extends BasePage {
         public boolean verifyCreateMessage(){
             System.out.println("Message "+taskCreatedwindow.getText());
         return  taskCreatedwindow.isDisplayed();
+
+
 }
-    // *** deadline methods
-    public void clickDeadlineButton() {
-        deadLineButton.click();
+    //**Attach file and Link methods
+        public void attachLink(String value){
+            attachLink.click();
+            enterLinkBox.sendKeys(value);
+            saveLinkButton.click();
     }
+
+public String verifyLinkIsAttacheded() {
+        String actualREsalt = inputMessageBox.getText();
+        return actualREsalt;
+ /*   String[] texst = inputMessageBox.getText().split(" ");
+    for (String eachString : texst) {
+        if (eachString.equals(value)) {
+            System.out.println("Link is attached: " + value);
+            break;
+        } else {
+            System.out.println("Failed to attach");
+
+        }
+
+
+    }*/
+}
+
+// *** deadline methods
+// *** deadline methods
+public void clickDeadlineButton() {
+    deadLineButton.click();
+}
 
     public void selectDeadlineDate(String date) {
         waitUntilLoaderScreenDisappear();
