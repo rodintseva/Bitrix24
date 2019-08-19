@@ -31,6 +31,11 @@ public class CreateTaskStepDefinition {
     }
 
 //***Steps to attach Link
+        @Then("User clicks on upload file button attaches file located at {string}")
+        public void userClicksOnUploadFileButtonAttachesFileLocatedAt(String value) {
+        page.taskPage().attachFile(value);
+        }
+
     @And("User clicks on Link button and upload the link {string}")
     public void userClicksOnLinkButtonAndUploadTheLink(String value) {
     page.taskPage().attachLink(value);
