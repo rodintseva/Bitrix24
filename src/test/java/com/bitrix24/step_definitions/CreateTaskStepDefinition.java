@@ -7,8 +7,11 @@ import cucumber.api.java.en.When;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
-    @When("user navigates to {string}")
-    public void userNavigatesTo(String value) {
+
+    @When("user navigates to Task module")
+    public void userNavigatesToTaskModule() {
+
+    page.taskPage().navigatetoTask();
 
     }
 

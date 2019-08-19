@@ -34,15 +34,23 @@ public class TaskPage extends BasePage {
     public WebElement taskModuleButton;
     @FindBy(xpath = "//*[@id=\"blogPostEditCreateTaskPopup_content\"]/div/div[1]")
     public WebElement taskCreatedwindow;
+    @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
+    public WebElement clickOnTextBox;
 
-public void enterTaskTittle(String value){
-    inputMessageBox.sendKeys(value);
-}
-public void clickSendButton(){
-    sendButton.click();
-}
-public boolean verifyCreateMessage(){
-   return  taskCreatedwindow.isDisplayed();
+        public void navigatetoTask(){
+        taskModuleButton.click();
+        }
+        public void enterTaskTittle(String value){
+         clickOnTextBox.click();
+        clickOnTextBox.sendKeys(value);
+        }
+        public void clickSendButton(){
+
+        sendButton.click();
+        }
+        public boolean verifyCreateMessage(){
+
+        return  taskCreatedwindow.isDisplayed();
 
 }
 }
