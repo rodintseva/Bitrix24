@@ -45,13 +45,11 @@ public class TaskPage extends BasePage {
         clickOnTextBox.sendKeys(value);
         }
         public void clickSendButton(){
-
         sendButton.click();
         }
         public boolean verifyCreateMessage(){
-
+            System.out.println("Message "+taskCreatedwindow.getText());
         return  taskCreatedwindow.isDisplayed();
-
 }
 }
 

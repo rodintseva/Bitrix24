@@ -32,9 +32,9 @@ public class LoginStepDefinitions {
 
         Assert.assertEquals(expected, pages.messagePage().getPageTitle());
     }
-    @Then("user quites")
-    public void user_quites() {
-        Driver.closeDriver();
-    }
+  //  @Then("user quites")
+  //  public void user_quites() {
+    //    Driver.closeDriver();
+  //  }
 
 }
