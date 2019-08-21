@@ -5,7 +5,7 @@ Feature:  As a user I should be able to create a task from activity stream.
     When user navigates to Task module
 
 @CreateTask
-  Scenario: Create new task by clicking on Tasks on Activity stream
+  Scenario: Verify that user can create new task by clicking on tasks onactivity stream.
   And user enters task name "dCoders"
   And user clicks on Send button
   Then System should display "Task has been created" message
