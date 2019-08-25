@@ -1,11 +1,14 @@
 package com.bitrix24.step_definitions;
 
+import com.bitrix24.utils.BasePage;
 import com.bitrix24.utils.Pages;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+
+import java.time.LocalDateTime;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
@@ -48,27 +51,27 @@ public class CreateTaskStepDefinition {
         public void systemShouldUploadLink(String expected) {
         Assert.assertEquals(expected, page.taskPage().verifyLinkIsAttached("https://flipgrid.com"));
         }
-//***Steps to set deadline
-    @When("Click on Calendar under Deadline")
+  
+    // *** Steps to set deadline
+    @And("clicks on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
         page.taskPage().clickDeadlineButton();
     }
 
-    @When("Click on a date and time")
-    public void click_on_a_date_and_time() {
-        page.taskPage().selectDeadlineDate("8/15/2019");
+    @And("selects date {string}")
+    public void select_date(String datestr) {
+        page.taskPage().selectDeadlineDate(datestr);
     }
 
-    @When("Click on Select button")
+    @And("clicks on Select button")
     public void click_on_Select_button() {
         page.taskPage().clickDeadlineSelectButton();
     }
 
-    @Then("System should display the selected date time")
-    public void system_should_display_the_selected_date_time() {
-        Assert.assertTrue(page.taskPage().verifyCreateMessage());
+    @Then("system should display date {string}")
+    public void system_should_display_date(String expected) {
+      
+        String actual = page.taskPage().getDeadline();
+        Assert.assertEquals(expected,actual);
     }
-
-
-
 }
