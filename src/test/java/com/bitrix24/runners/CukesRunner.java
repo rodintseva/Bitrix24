@@ -7,11 +7,7 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            plugin = {
-                    "json:target/cucumber.json",
-                    "html:target/default-cucumber-reports"
-            },
-            tags = {"@deadline"},
+            tags = {"@AttachFile"},
             features = {"src/test/resources/features"     } ,
 
                        /*
@@ -22,7 +18,11 @@ import org.junit.runner.RunWith;
 
             glue = {"com/bitrix24/step_definitions"},
             dryRun = false
+
+
+
     )
+
 
     public class CukesRunner {
     }

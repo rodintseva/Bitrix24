@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 public class CreateTaskStepDefinition {
     Pages  page = new Pages();
-
+//***Steps to create Task
     @When("user navigates to Task module")
     public void userNavigatesToTaskModule() {
     page.taskPage().navigatetoTask();
@@ -33,30 +33,26 @@ public class CreateTaskStepDefinition {
     page.taskPage().verifyCreateMessage();
     }
 
-    @When("user navigates to {string} in {string} page")
-    public void user_navigates_to_in_page(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
+//***Steps to attach Link
+        @Then("User clicks on upload file button attaches file located at {string}")
+        public void userClicksOnUploadFileButtonAttachesFileLocatedAt(String value) {
+        page.taskPage().attachFile(value);
+        }
+         @Then("System should display attached file")
+         public void systemShouldDisplayAttachedFile() {
+            page.taskPage().verifyUploadedFilesIcon();
     }
 
-    @When("User clicks on {string} button")
-    public void user_clicks_on_button(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @When("User click on {string} and select a file")
-    public void user_click_on_and_select_a_file(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
-    @Then("System should upload the file or image")
-    public void system_should_upload_the_file_or_image() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new cucumber.api.PendingException();
-    }
-
+        @And("User clicks on Link button and upload the link {string}")
+        public void userClicksOnLinkButtonAndUploadTheLink(String value) {
+        page.taskPage().attachLink(value);
+        }
+        @Then("System should upload link {string}")
+        public void systemShouldUploadLink(String expected) {
+        Assert.assertEquals(expected, page.taskPage().verifyLinkIsAttached("https://flipgrid.com"));
+        }
+  
+    // *** Steps to set deadline
     @And("clicks on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
         page.taskPage().clickDeadlineButton();
@@ -74,7 +70,7 @@ public class CreateTaskStepDefinition {
 
     @Then("system should display date {string}")
     public void system_should_display_date(String expected) {
-
+      
         String actual = page.taskPage().getDeadline();
         Assert.assertEquals(expected,actual);
     }

@@ -16,6 +16,10 @@ import java.lang.invoke.SwitchPoint;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.bitrix24.utils.Driver.getDriver;
 
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
@@ -26,12 +30,6 @@ public class TaskPage extends BasePage {
     public WebElement sendButton;
     @FindBy(xpath = "//button[@id='blog-submit-button-cancel' and contains(text(),'Cancel')]")
     public WebElement cancelButton;
-    @FindBy(css = "body[style='min-height: 84px;'] ")
-    public WebElement inputMessageBox;
-    @FindBy(css = "span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
-    public WebElement uploadFiles;
-    @FindBy(xpath = "//span[text()='Link']")
-    public WebElement attachLink;
     @FindBy(css = "div[class='popup-window-angly popup-window-angly-top']")
     public WebElement addMention;
     @FindBy(css = "span[class=\"tasks-task-mpf-link\"]")
@@ -46,6 +44,22 @@ public class TaskPage extends BasePage {
     public WebElement taskCreatedwindow;
     @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
     public WebElement clickOnTextBox;
+
+    //***Attach file locators
+    @FindBy(xpath = "//*[@id=\"diskuf-selectdialog-wrgLCp0\"]/div[2]/table/tbody/tr[1]/td[1]/div/span")
+    public WebElement getUploadFromComputer;
+    @FindBy (xpath= "/html/body ")
+    public WebElement inputMessageBox;
+    @FindBy (xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
+    public WebElement attachLink;
+    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+    public WebElement uploadFiles;
+    @FindBy(xpath = "//*[@id=\"linklifefeed_task_form-href\"]")
+    public WebElement enterLinkBox;
+    @FindBy(xpath = "//*[@id=\"undefined\"]")
+    public WebElement saveLinkButton;
+    @FindBy(className = "diskuf-label-icon")
+    public  WebElement attachedFileIcon;
 
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
@@ -62,7 +76,8 @@ public class TaskPage extends BasePage {
     public WebElement deadlineLabel;
 
 
-    public void navigatetoTask() {
+//**Create task Methods
+    public void navigatetoTask(){
         taskModuleButton.click();
     }
 
@@ -73,13 +88,34 @@ public class TaskPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
-        BrowserUtils.waitPlease(1);
+        }
+        public boolean verifyCreateMessage(){
+            System.out.println("Message "+taskCreatedwindow.getText());
+        return  taskCreatedwindow.isDisplayed();
+    }
+  
+    //**Attach file and Link methods
+    public void attachFile(String value){
+        uploadFiles.click();
+        getUploadFromComputer.sendKeys(value);
+
+    }
+    public void verifyUploadedFilesIcon(){
+
+    }
+    public void attachLink(String value) {
+        attachLink.click();
+        enterLinkBox.sendKeys(value);
+        saveLinkButton.click();
     }
 
-    public boolean verifyCreateMessage() {
-        System.out.println("Message " + taskCreatedwindow.getText());
-        return taskCreatedwindow.isDisplayed();
-    }
+    public String verifyLinkIsAttached(String value) {
+
+        getDriver().switchTo().frame("bx-editor-iframe");
+        String actualLinkText = getDriver().findElement(By.cssSelector("a[href='"+value+"']")).getText();
+        //String actualREsalt = inputMessageBox.getText();
+        return actualLinkText;
+}
 
     // *** DEADLINE METHODS
     /**
