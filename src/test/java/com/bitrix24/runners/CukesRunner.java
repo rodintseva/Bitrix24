@@ -7,7 +7,11 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            tags = {"@AttachFile"},
+            plugin = {
+                    "json:target/cucumber.json",
+                    "html:target/default-cucumber-reports"
+            },        
+   //         tags = {"@AttachFile"},
             features = {"src/test/resources/features"     } ,
 
                        /*
