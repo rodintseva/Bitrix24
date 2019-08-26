@@ -35,5 +35,34 @@ public class LoginPage {
     public void goToLandingPage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url" + ConfigurationReader.getProperty("environment")));
     }
+
+    /**
+     * login method that takes role as an argument
+     * @param role
+     */
+    public void login(String role){
+        String username = "";
+        String password = "";
+        switch(role.toLowerCase()){
+            case "helpdesk":
+                username = ConfigurationReader.getProperty("helpdesk35username");
+                password = ConfigurationReader.getProperty("helpdesk35password");
+                break;
+            case "marketing":
+                username = ConfigurationReader.getProperty("marketing35username");
+                password = ConfigurationReader.getProperty("marketing35password");
+                break;
+            case "hr":
+                username = ConfigurationReader.getProperty("hr35username");
+                password = ConfigurationReader.getProperty("hr35password");
+                break;
+            default:
+                username = ConfigurationReader.getProperty("helpdesk35username");
+                password = ConfigurationReader.getProperty("helpdesk35password");
+        }
+        userNameElement.sendKeys(username);
+        passwordElement.sendKeys(password);
+        loginButtonElement.click();
+    }
 }
 
