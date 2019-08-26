@@ -363,3 +363,53 @@ Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 7
 Session ID: f14d46b6bfee88a42210cdfb29d0d954
 *** Element info: {Using=css selector, value=a[title='Tasks']}
 2019-08-26 14:07:58 [main] ERROR BrowserUtils:105 - Attempt :: 5
+2019-08-26 16:13:20 [main] ERROR BrowserUtils:103 - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[title='Chat and Calls']"}
+  (Session info: chrome=76.0.3809.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-8TLOMC0I', ip: '192.168.1.90', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 76.0.3809.100, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\rodin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:63279}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 82e2089dbd90a2094df826d94aa5ffd4
+*** Element info: {Using=css selector, value=a[title='Chat and Calls']}
+2019-08-26 16:13:20 [main] ERROR BrowserUtils:105 - Attempt :: 1
+2019-08-26 16:13:41 [main] ERROR BrowserUtils:103 - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[title='Chat and Calls']"}
+  (Session info: chrome=76.0.3809.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-8TLOMC0I', ip: '192.168.1.90', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 76.0.3809.100, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\rodin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:63279}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 82e2089dbd90a2094df826d94aa5ffd4
+*** Element info: {Using=css selector, value=a[title='Chat and Calls']}
+2019-08-26 16:13:41 [main] ERROR BrowserUtils:105 - Attempt :: 2
+2019-08-26 16:14:02 [main] ERROR BrowserUtils:103 - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[title='Chat and Calls']"}
+  (Session info: chrome=76.0.3809.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-8TLOMC0I', ip: '192.168.1.90', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 76.0.3809.100, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\rodin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:63279}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 82e2089dbd90a2094df826d94aa5ffd4
+*** Element info: {Using=css selector, value=a[title='Chat and Calls']}
+2019-08-26 16:14:02 [main] ERROR BrowserUtils:105 - Attempt :: 3
+2019-08-26 16:14:23 [main] ERROR BrowserUtils:103 - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[title='Chat and Calls']"}
+  (Session info: chrome=76.0.3809.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-8TLOMC0I', ip: '192.168.1.90', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 76.0.3809.100, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\rodin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:63279}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 82e2089dbd90a2094df826d94aa5ffd4
+*** Element info: {Using=css selector, value=a[title='Chat and Calls']}
+2019-08-26 16:14:23 [main] ERROR BrowserUtils:105 - Attempt :: 4
+2019-08-26 16:14:44 [main] ERROR BrowserUtils:103 - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"a[title='Chat and Calls']"}
+  (Session info: chrome=76.0.3809.100)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-8TLOMC0I', ip: '192.168.1.90', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 76.0.3809.100, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\rodin\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:63279}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 82e2089dbd90a2094df826d94aa5ffd4
+*** Element info: {Using=css selector, value=a[title='Chat and Calls']}
+2019-08-26 16:14:44 [main] ERROR BrowserUtils:105 - Attempt :: 5

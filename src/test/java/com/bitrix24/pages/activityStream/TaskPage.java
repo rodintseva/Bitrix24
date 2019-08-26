@@ -16,7 +16,33 @@ import static com.bitrix24.utils.Driver.getDriver;
 //import javafx.scene.control.DatePicker;
 
 public class TaskPage extends BasePage {
+
+
     @FindBy(id = "feed-add-post-form-tab-tasks")
+    public WebElement taskElement;
+    @FindBy(xpath = "(//input[@placeholder='Things to do'])[1]")
+    public WebElement thingsToDoElement;
+    @FindBy(xpath = "//body[@contenteditable='true'][contains(@style,'min-height')]")
+    public WebElement bodyElement;
+    @FindBy(xpath = "(//input[@type='file'])[5]")
+    public WebElement uploadFileElement;
+    @FindBy(id = "bx-b-uploadfile-task-form-lifefeed_task_form")
+    public WebElement fileUploadElement;
+    @FindBy(xpath = "(//span[@title='Link'])[2]")
+    public WebElement linkElement;
+    @FindBy(xpath = "(//input[@id='linklifefeed_task_form-text'])[1]")
+    public WebElement linkTextElement;
+    @FindBy(xpath = "//input[@id='linklifefeed_task_form-href']")
+    public WebElement linkUrlElement;
+    @FindBy(css = "input[id='undefined']")
+    public WebElement saveElement;
+       @FindBy(xpath = "(//button[@id='blog-submit-button-save'])[1]")
+    public WebElement saveButtonElement;
+    @FindBy(xpath = "(//iframe[@class='bx-editor-iframe'])[2]")
+    public WebElement iframeElement;
+
+
+@FindBy(id = "feed-add-post-form-tab-tasks")
     public WebElement activityStream;
     @FindBy(id = "task-edit-title")
     public WebElement inputTaskName;
@@ -111,9 +137,9 @@ public class TaskPage extends BasePage {
     public String verifyLinkIsAttached() {
         getDriver().switchTo().frame(0);
         //String actualREsalt = inputMessageBox.getText();
-        String actualLinkText = Driver.getDriver().findElement(By.xpath("/html/body")).getText();
+        String actualLinkText = Driver.getDriver().findElement(By.xpath("//iframe[@class='bx-editor-iframe'])[2]")).getText();
         System.out.println(actualLinkText);
-        // Driver.getDriver().switchTo().parentFrame();
+      Driver.getDriver().switchTo().parentFrame();
         return actualLinkText;
     }
 
