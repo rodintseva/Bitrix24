@@ -19,18 +19,36 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[2]/input")
     public WebElement loginButtonElement;
 
-    public void login(String username, String password) {
-        userNameElement.sendKeys(username);
-        passwordElement.sendKeys(password);
-        loginButtonElement.click();
-    }
+    public void login(String password, String username) {
+    username = ConfigurationReader.getProperty("hr35username");
+           password = ConfigurationReader.getProperty("hr35password");
+            userNameElement.sendKeys(username);
+            passwordElement.sendKeys(password);
+            loginButtonElement.click();
 
-    public void login() {
-        String username = ConfigurationReader.getProperty("helpdesk35username");
-        String password = ConfigurationReader.getProperty("helpdesk35password");
-        userNameElement.sendKeys(username);
-        passwordElement.sendKeys(password);
-        loginButtonElement.click();
+
+    }
+    public void loginAyden(String user) {
+        if (user.equalsIgnoreCase("hr")) {
+            String username = ConfigurationReader.getProperty("hr35username");
+            String password = ConfigurationReader.getProperty("hr35password");
+            userNameElement.sendKeys(username);
+            passwordElement.sendKeys(password);
+            loginButtonElement.click();
+        } else if (user.equalsIgnoreCase("helpdesk")) {
+            String username = ConfigurationReader.getProperty("helpdesk35username");
+            String password = ConfigurationReader.getProperty("helpdesk35password");
+            userNameElement.sendKeys(username);
+            passwordElement.sendKeys(password);
+            loginButtonElement.click();
+        } else if (user.equalsIgnoreCase("marketing")) {
+            String username = ConfigurationReader.getProperty("marketing36username");
+            String password = ConfigurationReader.getProperty("marketing36password");
+            userNameElement.sendKeys(username);
+            passwordElement.sendKeys(password);
+            loginButtonElement.click();
+        }
+
     }
     public void goToLandingPage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url" + ConfigurationReader.getProperty("environment")));

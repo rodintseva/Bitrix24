@@ -3,23 +3,17 @@ package com.bitrix24.pages.activityStream;
 import com.bitrix24.utils.BasePage;
 import com.bitrix24.utils.BrowserUtils;
 import com.bitrix24.utils.Driver;
-import com.bitrix24.utils.Pages;
-import javafx.scene.control.DatePicker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
-import java.lang.invoke.SwitchPoint;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.bitrix24.utils.Driver.getDriver;
+
+//import javafx.scene.control.DatePicker;
 
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
@@ -48,18 +42,18 @@ public class TaskPage extends BasePage {
     //***Attach file locators
     @FindBy(id = "diskuf-selectdialog-wrgLCp0")
     public WebElement getUploadFromComputer;
-    @FindBy (xpath= "/html/body ")
+    @FindBy(xpath = "/html/body ")
     public WebElement inputMessageBox;
-    @FindBy (xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
+    @FindBy(xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
     public WebElement attachLink;
-    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+    @FindBy(css = "span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
     public WebElement uploadFiles;
     @FindBy(xpath = "//*[@id=\"linklifefeed_task_form-href\"]")
     public WebElement enterLinkBox;
     @FindBy(xpath = "//*[@id=\"undefined\"]")
     public WebElement saveLinkButton;
     @FindBy(className = "diskuf-label-icon")
-    public  WebElement attachedFileIcon;
+    public WebElement attachedFileIcon;
 
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
@@ -74,10 +68,12 @@ public class TaskPage extends BasePage {
     public WebElement yearTextbox;
     @FindBy(css = "input[name='ACTION[0][ARGUMENTS][data][DEADLINE]']")
     public WebElement deadlineLabel;
+    @FindBy(xpath = "//span[@class ='menu-item-link-text']")
+    public WebElement pageName;
 
 
-//**Create task Methods
-    public void navigatetoTask(){
+    //**Create task Methods
+    public void navigatetoTask() {
         taskModuleButton.click();
     }
 
@@ -88,21 +84,24 @@ public class TaskPage extends BasePage {
 
     public void clickSendButton() {
         sendButton.click();
-        }
-        public boolean verifyCreateMessage(){
-            System.out.println("Message "+taskCreatedwindow.getText());
-        return  taskCreatedwindow.isDisplayed();
     }
-  
+
+    public boolean verifyCreateMessage() {
+        System.out.println("Message " + taskCreatedwindow.getText());
+        return taskCreatedwindow.isDisplayed();
+    }
+
     //**Attach file and Link methods
-    public void attachFile(String value){
+    public void attachFile(String value) {
         uploadFiles.click();
         getUploadFromComputer.sendKeys(value);
 
     }
-    public void verifyUploadedFilesIcon(){
+
+    public void verifyUploadedFilesIcon() {
 
     }
+
     public void attachLink(String value) {
         attachLink.click();
         enterLinkBox.sendKeys(value);
@@ -110,7 +109,7 @@ public class TaskPage extends BasePage {
     }
 
     public String verifyLinkIsAttached() {
-      getDriver().switchTo().frame(0);
+        getDriver().switchTo().frame(0);
         //String actualREsalt = inputMessageBox.getText();
         String actualLinkText = Driver.getDriver().findElement(By.xpath("/html/body")).getText();
         System.out.println(actualLinkText);
@@ -119,6 +118,7 @@ public class TaskPage extends BasePage {
     }
 
     // *** DEADLINE METHODS
+
     /**
      * click on the Deadline box to set a date
      */
@@ -128,12 +128,13 @@ public class TaskPage extends BasePage {
 
     /**
      * select the date from the calendar
+     *
      * @param datetimestr
      */
     public void selectDeadlineDate(String datetimestr) {
 
         // make am pm Uppercase to be able to parse into datetime
-        datetimestr = datetimestr.replace("am", "AM").replace("pm","PM");
+        datetimestr = datetimestr.replace("am", "AM").replace("pm", "PM");
         // parse the date string into LocalDateTime using DateTimeFormatter
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a");
         LocalDateTime ldt = LocalDateTime.parse(datetimestr, dtf);
@@ -149,11 +150,11 @@ public class TaskPage extends BasePage {
         int currentDay = LocalDate.now().getDayOfMonth();
 
         // if year to select is not current year than click on the year
-        if(year != currentYear){
+        if (year != currentYear) {
             yearButton.click();
             BrowserUtils.waitPlease(2); // pause for demo
             // if year to select is within 3 year range with current year than click on the direct link
-            if(Math.abs(year - currentYear) <= 3){
+            if (Math.abs(year - currentYear) <= 3) {
                 String yearLink = "span.bx-calendar-year-number[data-bx-year='" + year + "']";
                 Driver.getDriver().findElement(By.cssSelector(yearLink)).click();
             }
@@ -163,7 +164,7 @@ public class TaskPage extends BasePage {
         }
 
         // if month is different than click on month and select from the list
-        if(month != currentMonth){
+        if (month != currentMonth) {
             monthButton.click();
             BrowserUtils.waitPlease(2); // pause for demo
             //Locator for month
@@ -172,7 +173,7 @@ public class TaskPage extends BasePage {
             BrowserUtils.waitPlease(2); // pause for demo
         }
 
-        if(day != currentDay){
+        if (day != currentDay) {
             //locator for day
             //pick non-hidden day hidden days belong to prior and next month
             String dayLocator = "//a[contains(@class,'bx-calendar-cell') and text()='" + day + "' and not(contains(@class,'bx-calendar-date-hidden'))]";
@@ -191,15 +192,35 @@ public class TaskPage extends BasePage {
 
     /**
      * returns the Deadline date label value
+     *
      * @return
      */
-    public String getDeadline(){
+    public String getDeadline() {
         return deadlineLabel.getAttribute("value");
     }
-}
+
 
 //    // *** task module locators
 //    @FindBy(css = "thead.main-grid-header")
 //    public WebElement tableHead;
 //    @FindBy(css = "thead.main-grid-header th[data-name='TITLE']")
 //    public WebElement nameHeader;
+
+    /******verify page tittle
+     *
+     */
+
+    public  String returnPageTitle(String module) {
+        String actual=Driver.getDriver().getTitle();
+        if (actual.equals("(2) EULA violatio")){
+            System.out.println("Close previous session and try again");
+            Driver.getDriver().quit();
+        }
+
+    return actual;
+
+        }
+
+}
+
+
