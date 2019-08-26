@@ -3,6 +3,7 @@ package com.bitrix24.utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
@@ -86,6 +87,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
                 BrowserUtils.waitForStaleElement(Driver.getDriver().findElement(By.xpath(moduleLocator)));
                 BrowserUtils.clickWithTimeOut(Driver.getDriver().findElement(By.xpath(moduleLocator)),  Integer.valueOf(ConfigurationReader.getProperty("SHORT_WAIT")));
             }
+        }
+
+        /**
+         * This method will navigate user to the specific module in BriteERP application.
+         * @param tab
+         */
+        public static void navigateToModule(String tab) {
+
+            String tabLocator = "a[title='"+ tab + "']";
+            BrowserUtils.clickWithWait(Driver.getDriver(), By.cssSelector(tabLocator), 5);
         }
 
     }

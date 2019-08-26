@@ -23,8 +23,7 @@ Feature:  As a user I should be able to create a task from activity stream.
 @deadline
   Scenario: Verify that user should be able to set up a deadline for new task
     And user enters task name "dCodersCalendar"
-    And Click on Calendar under Deadline
-    And Click on a date and time
-    And Click on Select button
-    And user clicks on Send button
-    Then System should display the selected date time
+    And clicks on Calendar under Deadline
+    And selects date "08/31/2019 07:00:00 pm"
+    And clicks on Select button
+    Then system should display date "08/31/2019 07:00:00 pm"
