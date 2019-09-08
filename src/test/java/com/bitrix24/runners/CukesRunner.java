@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber.json",
                 "html:target/default-cucumber-reports"
         },
-//         tags = {"@AttachFile"},
-        features = {"src/test/resources/features/Aydin_Navigation.feature"
-        },
+         tags = {"@AttachFile"},
+        features = {"src/test/resources/features/CreateTask.feature"},
+//            features = {"src/test/resources/features"},
         glue = {"com/bitrix24/step_definitions"},
         dryRun = false
     )

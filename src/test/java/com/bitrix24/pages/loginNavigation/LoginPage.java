@@ -10,30 +10,18 @@ public class LoginPage {
     public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
-    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[1]/div[1]/input")
+
+    @FindBy(name = "USER_LOGIN")
     public WebElement userNameElement;
-    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[1]/div[2]/input")
+    @FindBy(name = "USER_PASSWORD")
     public WebElement passwordElement;
-
-
-    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[2]/input")
+    @FindBy(css = "input.login-btn")
     public WebElement loginButtonElement;
 
     public void login(String username, String password) {
         userNameElement.sendKeys(username);
         passwordElement.sendKeys(password);
         loginButtonElement.click();
-    }
-
-    public void login() {
-        String username = ConfigurationReader.getProperty("helpdesk35username");
-        String password = ConfigurationReader.getProperty("helpdesk35password");
-        userNameElement.sendKeys(username);
-        passwordElement.sendKeys(password);
-        loginButtonElement.click();
-    }
-    public void goToLandingPage() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("url" + ConfigurationReader.getProperty("environment")));
     }
 
     /**
@@ -60,9 +48,21 @@ public class LoginPage {
                 username = ConfigurationReader.getProperty("helpdesk35username");
                 password = ConfigurationReader.getProperty("helpdesk35password");
         }
-        userNameElement.sendKeys(username);
-        passwordElement.sendKeys(password);
-        loginButtonElement.click();
+        login(username,password);
+    }
+
+    public void login() {
+        login("helpdesk");
+    }
+    public void goToLandingPage() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url" + ConfigurationReader.getProperty("environment")));
     }
 }
+
+//    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[1]/div[1]/input")
+//    public WebElement userNameElement;
+//    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[1]/div[2]/input")
+//    public WebElement passwordElement;
+//    @FindBy(xpath = "//*[@id=\"login-popup\"]/form/div[2]/input")
+//    public WebElement loginButtonElement;
 

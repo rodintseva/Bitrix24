@@ -9,49 +9,65 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreateTaskStepDefinition {
-    Pages  page = new Pages();
-//***Steps to create Task
+    Pages page = new Pages();
+
+    //***Steps to create Task
     @When("user navigates to Task module")
     public void userNavigatesToTaskModule() {
-    page.taskPage().navigatetoTask();
+        page.taskPage().navigatetoTask();
     }
 
     @Given("user enters task name {string}")
     public void user_enters_task_name(String value) {
-    page.taskPage().enterTaskTittle(value);
+        page.taskPage().enterTaskTittle(value);
     }
 
     @Given("user clicks on Send button")
     public void user_clicks_on_Send_button() {
-    page.taskPage().clickSendButton();
+        page.taskPage().clickSendButton();
     }
 
     @Then("System should display \"Task has been created\" message")
     public void system_should_display_new_task() {
-    page.taskPage().verifyCreateMessage();
+        page.taskPage().verifyCreateMessage();
     }
 
-//***Steps to attach Link
-        @Then("User clicks on upload file button attaches file located at {string}")
-        public void userClicksOnUploadFileButtonAttachesFileLocatedAt(String value) {
-        page.taskPage().attachFile(value);
-        }
-         @Then("System should display attached file")
-         public void systemShouldDisplayAttachedFile() {
-            page.taskPage().verifyUploadedFilesIcon();
+    // *** Steps to attach file
+    @And("user clicks on upload file button and attaches file {string}")
+    public void user_clicks_on_upload_file_button_and_attaches_file(String filename) {
+        page.taskPage().attachFile(filename);
     }
 
-        @And("User clicks on Link button and upload the link {string}")
-        public void userClicksOnLinkButtonAndUploadTheLink(String value) {
-        page.taskPage().attachLink(value);
+    @Then("system should display the attached filename {string} or {string}")
+    public void system_should_display_the_attached_file(String expected1, String expected2) {
+        List<String> fileList = page.taskPage().getAttachedFileList();
+        int lastFileIndex = fileList.size() - 1;
+        String actualFilename = fileList.get(lastFileIndex);
+
+        // extract the filename from uploaded filename or expected2 if there is a number
+        Pattern pattern = Pattern.compile("^(.+?)( \\([\\#\\d]\\))+(\\..*)?$");
+        String expected2file = "";
+
+        // remove paranthesis (#) part from expected
+        Matcher me = pattern.matcher(expected2);
+        while(me.find()){
+            expected2file =  me.group(1) + me.group(3);
         }
-        @Then("System should upload link {string}")
-        public void systemShouldUploadLink(String expected) {
-        Assert.assertEquals(expected, page.taskPage().verifyLinkIsAttached("https://flipgrid.com"));
+
+        //remove number (#) part from actual
+        Matcher ma = pattern.matcher(actualFilename);
+        while(ma.find()){
+            actualFilename =  ma.group(1) + ma.group(3);
         }
-  
+
+        Assert.assertTrue(actualFilename.equals(expected1) || actualFilename.equals(expected2file));
+    }
+
     // *** Steps to set deadline
     @And("clicks on Calendar under Deadline")
     public void click_on_Calendar_under_Deadline() {
@@ -70,8 +86,8 @@ public class CreateTaskStepDefinition {
 
     @Then("system should display date {string}")
     public void system_should_display_date(String expected) {
-      
+
         String actual = page.taskPage().getDeadline();
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected, actual);
     }
 }

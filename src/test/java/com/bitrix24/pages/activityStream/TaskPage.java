@@ -1,15 +1,13 @@
 package com.bitrix24.pages.activityStream;
 
-import com.bitrix24.utils.BasePage;
-import com.bitrix24.utils.BrowserUtils;
-import com.bitrix24.utils.Driver;
-import com.bitrix24.utils.Pages;
+import com.bitrix24.utils.*;
 import javafx.scene.control.DatePicker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.Select;
 
 import java.lang.invoke.SwitchPoint;
@@ -23,7 +21,7 @@ import static com.bitrix24.utils.Driver.getDriver;
 
 public class TaskPage extends BasePage {
     @FindBy(id = "feed-add-post-form-tab-tasks")
-    public WebElement activityStream;
+    public WebElement taskModuleButton;
     @FindBy(id = "task-edit-title")
     public WebElement inputTaskName;
     @FindBy(xpath = "//button[@id='blog-submit-button-save' and contains(text(),'Send')]")
@@ -38,21 +36,19 @@ public class TaskPage extends BasePage {
     public WebElement highPriorityCheckbox;
     @FindBy(css = "div[class='task-additional-alt-more']")
     public WebElement moreButton;
-    @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-tasks\"]/span")
-    public WebElement taskModuleButton;
     @FindBy(xpath = "//*[@id=\"blogPostEditCreateTaskPopup_content\"]/div/div[1]")
     public WebElement taskCreatedwindow;
     @FindBy(xpath = "//*[@id=\"bx-component-scope-lifefeed_task_form\"]/div/div[1]/div[1]/div[2]/input")
     public WebElement clickOnTextBox;
 
     //***Attach file locators
-    @FindBy(xpath = "//*[@id=\"diskuf-selectdialog-wrgLCp0\"]/div[2]/table/tbody/tr[1]/td[1]/div/span")
+    @FindBy(css = "div.task-info div.diskuf-uploader input")
     public WebElement getUploadFromComputer;
     @FindBy (xpath= "/html/body ")
     public WebElement inputMessageBox;
     @FindBy (xpath = "//*[@id=\"bx-b-link-task-form-lifefeed_task_form\"]/span/i")
     public WebElement attachLink;
-    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+    @FindBy (id = "bx-b-uploadfile-task-form-lifefeed_task_form")
     public WebElement uploadFiles;
     @FindBy(xpath = "//*[@id=\"linklifefeed_task_form-href\"]")
     public WebElement enterLinkBox;
@@ -60,6 +56,8 @@ public class TaskPage extends BasePage {
     public WebElement saveLinkButton;
     @FindBy(className = "diskuf-label-icon")
     public  WebElement attachedFileIcon;
+    @FindBy(className = "f-wrap")
+    public List<WebElement> attachedFilenameList;
 
     // *** deadline locators
     @FindBy(css = "input[data-bx-id='datepicker-display']")
@@ -95,11 +93,22 @@ public class TaskPage extends BasePage {
     }
   
     //**Attach file and Link methods
-    public void attachFile(String value){
+    public void attachFile(String filename){
+        String filepath = System.getProperty("user.dir") + ConfigurationReader.getProperty("filepath") + filename;
         uploadFiles.click();
-        getUploadFromComputer.sendKeys(value);
-
+        BrowserUtils.waitPlease(2);
+        getUploadFromComputer.sendKeys(filepath);
+        BrowserUtils.waitPlease(4);
     }
+
+    public List<String> getAttachedFileList(){
+        List<String> filelist = new ArrayList<>();
+        for (WebElement each:attachedFilenameList) {
+            filelist.add(each.getText());
+        }
+        return filelist;
+    }
+
     public void verifyUploadedFilesIcon(){
 
     }
@@ -202,3 +211,9 @@ public class TaskPage extends BasePage {
 //    public WebElement tableHead;
 //    @FindBy(css = "thead.main-grid-header th[data-name='TITLE']")
 //    public WebElement nameHeader;
+//    @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-tasks\"]/span")
+//    public WebElement taskModuleButton;
+//    @FindBy (css ="span[id='bx-b-uploadfile-task-form-lifefeed_task_form']")
+//    public WebElement uploadFiles;
+//    @FindBy(xpath = "//*[@id=\"diskuf-selectdialog-wrgLCp0\"]/div[2]/table/tbody/tr[1]/td[1]/div/span")
+//    public WebElement getUploadFromComputer;
